@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Watch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333;
+        }
+
+        #watch {
+            background-color: #000;
+            color: #fff;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+        }
+
+        #time {
+            color: #ff6eff; /* Cor neon pink */
+        }
+    </style>
+</head>
+<body>
+    <div id="watch">
+        <span id="time">00:00:00</span>
+    </div>
+
+    <script>
+        function updateClock() {
+            const timeZoneOffset = -3; // Horário de Brasília (GMT-3)
+            const now = new Date();
+            const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+            const brasilTime = new Date(utc + (3600000 * timeZoneOffset));
+            const timeString = brasilTime.toLocaleTimeString('pt-BR', { hour12: false });
+            document.getElementById('time').textContent = timeString;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock(); // Chamar uma vez para exibir o horário imediatamente
+    </script>
+</body>
+</html>
